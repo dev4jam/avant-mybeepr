@@ -8,10 +8,13 @@ using BizDaysLib;
 
 namespace WebApplication {
     public partial class _Default : Page {
-        private Holiday[] holidays;
+        private IHolidaysDataSource source;
+        private IWorkDaysInteractor interactor;
 
         protected void Page_Load(object sender, EventArgs e) {
             CreateHolidays();
+
+            interactor = new DynamicWorkDaysInteractor();
         }
 
         protected void OnStartDateSelectionChanged(object sender, EventArgs e) {
@@ -32,25 +35,24 @@ namespace WebApplication {
         }
 
         private void CreateHolidays() {
-            var newHolidays = new List<Holiday>();
+            GenericHolidaysDataSource source = new GenericHolidaysDataSource();
 
-            newHolidays.Add(new Holiday(1, 1, true, "New Year"));
-            newHolidays.Add(new Holiday(26, 1, true, "Australia day"));
-            newHolidays.Add(new Holiday(30, 3, true, "Good Friday"));
-            newHolidays.Add(new Holiday(31, 3, true, "Easter"));
-            newHolidays.Add(new Holiday(25, 4, false, "Anzac Day"));
-            newHolidays.Add(new Holiday(DayOfWeek.Monday, 1, 6, true, "Queen's Birthday"));
-            newHolidays.Add(new Holiday(6, 8, true, "Bank Holiday"));
-            newHolidays.Add(new Holiday(DayOfWeek.Monday, 0, 10, true, "Labor Day"));
-            newHolidays.Add(new Holiday(25, 12, true, "Christmas"));
-            newHolidays.Add(new Holiday(26, 12, true, "Boxing Day"));
+            source.Add(new Holiday(1, 1, true, "New Year"));
+            source.Add(new Holiday(26, 1, true, "Australia day"));
+            source.Add(new Holiday(30, 3, true, "Good Friday"));
+            source.Add(new Holiday(31, 3, true, "Easter"));
+            source.Add(new Holiday(25, 4, false, "Anzac Day"));
+            source.Add(new Holiday(DayOfWeek.Monday, 1, 6, true, "Queen's Birthday"));
+            source.Add(new Holiday(6, 8, true, "Bank Holiday"));
+            source.Add(new Holiday(DayOfWeek.Monday, 0, 10, true, "Labor Day"));
+            source.Add(new Holiday(25, 12, true, "Christmas"));
+            source.Add(new Holiday(26, 12, true, "Boxing Day"));
 
-            holidays = newHolidays.ToArray();
+            this.source = source;
         }
 
         private int GetBusinessDays(DateTime startDate, DateTime endDate) {
-            var interactor = new DynamicWorkDaysInteractor();
-            var businessDays = interactor.GetBizDays(startDate, endDate, holidays);
+            var businessDays = interactor.GetBizDays(startDate, endDate, source);
 
             return businessDays;
         }

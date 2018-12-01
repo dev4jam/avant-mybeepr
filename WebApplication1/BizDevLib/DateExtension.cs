@@ -11,7 +11,7 @@ namespace DateExtension {
         }
 
         public static bool InRange(this DateTime date, DateTime startDate, DateTime endDate) {
-            return startDate <= date && date <= endDate;
+            return startDate < date && date < endDate;
         }
 
         public static int GetWeekday(this DateTime date) {
