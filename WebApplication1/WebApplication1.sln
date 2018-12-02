@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Tests", "WebApplication1.Tests\WebApplication.Tests.csproj", "{B56C286A-1A56-44C4-B535-2354C902590A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizDaysLib", "BizDevLib\BizDaysLib.csproj", "{4CDAC796-454E-4D5C-A726-D799CE48C08D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BizDaysLib", "BizDaysLib\BizDaysLib.csproj", "{4CDAC796-454E-4D5C-A726-D799CE48C08D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
